@@ -1,46 +1,75 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PerformanceReportComponent } from './performance-report/performance-report.component';
-import { CustomReportsComponent } from './custom-reports/custom-reports.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { AppListsComponent } from "./pages/app-lists/app-lists.component";
+import { DeviceIdListsComponent } from "./pages/device-id-lists/device-id-lists.component";
+import { IpListsComponent } from "./pages/ip-lists/ip-lists.component";
 
 const routes: Routes = [
   {
-    path: 'report',
-    component: PerformanceReportComponent
+    path: "",
+    redirectTo: "report",
+    pathMatch: "full"
   },
   {
-    path: 'custom-reports',
-    component: CustomReportsComponent
+    path: "report",
+    loadChildren: () =>
+      import("./pages/performance-report/performance-report.module").then(
+        m => m.PerformanceReportModule
+      )
+  },
+  {
+    path: "custom-reports",
+    loadChildren: () =>
+      import("./pages/custom-reports/custom-reports.module").then(
+        m => m.CustomReportsModule
+      )
+  },
+  {
+    path: "advertisers",
+    loadChildren: () =>
+      import("./pages/advertisers/advertisers.module").then(
+        m => m.AdvertisersModule
+      )
+  },
+  {
+    path: "campaigns",
+    loadChildren: () =>
+      import("./pages/campaigns/campaigns.module").then(
+        m => m.CampaignsModule
+      )
+  },
+  {
+    path: "deals",
+    loadChildren: () =>
+      import("./pages/deals/deals.module").then(
+        m => m.DealsModule
+      )
+  },
+  {
+    path: "app-lists",
+    loadChildren: () =>
+      import("./pages/app-lists/app-lists.module").then(
+        m => m.AppListsModule
+      )
+  },
+  {
+    path: "device-id-lists",
+    loadChildren: () =>
+      import("./pages/device-id-lists/device-id-lists.module").then(
+        m => m.DeviceIdListsModule
+      )
+  },
+  {
+    path: "ip-lists",
+    loadChildren: () =>
+      import("./pages/ip-lists/device-id-lists.module").then(
+        m => m.IpListsModule
+      )
   }
-  // },
-  // {
-  //   path: '/advertisers',
-  //   component: require('./components/Advertisers.vue').default
-  // },
-  // {
-  //   path: '/campaigns',
-  //   component: require('./components/Campaigns.vue').default
-  // },
-  // {
-  //   path: '/deals',
-  //   component: require('./components/Deals.vue').default
-  // },
-  // {
-  //   path: '/app-lists',
-  //   component: require('./components/BundleIDsLists.vue').default
-  // },
-  // {
-  //   path: '/device-id-lists',
-  //   component: require('./components/DeviceIDsLists.vue').default
-  // },
-  // {
-  //   path: '/ip-lists',
-  //   component: require('./components/IPLists.vue').default
-  // }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

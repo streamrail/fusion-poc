@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuItem } from '@ironsrc/fusion-ui'
 
 @Component({
   selector: 'app-root',
@@ -8,19 +9,19 @@ import { Component } from '@angular/core';
 export class AppComponent {
   headerPrimaryMenuItems = []
   headerSecondaryMenuItems = []
-  mainMenuItems = [
+  mainMenuItems: MenuItem[] = [
     {
       name: "Reports",
       icon: "bar-chart",
       children: [
         {
           name: "Performance",
-          redirect: "/report",
+          route: "/report",
           cssClass: "is-user-menu-last-child-item"
         },
         {
           name: "Custom Reports",
-          redirect: "/custom-reports",
+          route: "/custom-reports",
           cssClass: "is-user-menu-last-child-item"
         }
       ]
@@ -31,17 +32,17 @@ export class AppComponent {
       children: [
         {
           name: "Advertisers",
-          redirect: "/advertisers",
+          route: "/advertisers",
           cssClass: "is-user-menu-last-child-item"
         },
         {
           name: "Campaigns",
-          redirect: "/campaigns",
+          route: "/campaigns",
           cssClass: "is-user-menu-last-child-item"
         },
         {
           name: "Deals",
-          redirect: "/deals",
+          route: "/deals",
           cssClass: "is-user-menu-last-child-item"
         }
       ]
@@ -52,17 +53,17 @@ export class AppComponent {
       children: [
         {
           name: "Bundle IDs",
-          redirect: "/app-lists",
+          route: "/app-lists",
           cssClass: "is-user-menu-last-child-item"
         },
         {
           name: "Device IDs",
-          redirect: "/device-id-lists",
+          route: "/device-id-lists",
           cssClass: "is-user-menu-last-child-item"
         },
         {
           name: "IPs",
-          redirect: "/ip-lists",
+          route: "/ip-lists",
           cssClass: "is-user-menu-last-child-item"
         }
       ]
