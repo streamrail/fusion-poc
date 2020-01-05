@@ -1,17 +1,15 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Routes, RouterModule} from '@angular/router';
-import {AdvertisersComponent} from './advertisers.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from '@angular/forms';
 
-const routes: Routes = [
-    {
-        path: '',
-        component: AdvertisersComponent
-    }
-];
+import { AdvertisersListComponent } from "./advertisers-list/advertisers-list.component";
+import { AdvertiserDetailsComponent } from "./advertiser-details/advertiser-details.component";
+
+import { AdvertisersRoutingModule } from './advertisers-rounting.module';
+
 
 @NgModule({
-    declarations: [AdvertisersComponent],
-    imports: [CommonModule, RouterModule.forChild(routes)]
+    declarations: [AdvertisersListComponent, AdvertiserDetailsComponent],
+    imports: [CommonModule, FormsModule, AdvertisersRoutingModule]
 })
-export class AdvertisersModule {}
+export class AdvertisersModule { }
