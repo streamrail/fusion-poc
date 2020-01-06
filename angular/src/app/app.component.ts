@@ -7,6 +7,9 @@ import { MenuItem } from '@ironsrc/fusion-ui'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  headerState = {
+    title: 'test'
+  }
   headerPrimaryMenuItems = []
   headerSecondaryMenuItems = []
   mainMenuItems: MenuItem[] = [
