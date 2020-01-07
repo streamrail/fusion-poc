@@ -1,8 +1,5 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AppListsComponent } from "./pages/app-lists/app-lists.component";
-import { DeviceIdListsComponent } from "./pages/device-id-lists/device-id-lists.component";
-import { IpListsComponent } from "./pages/ip-lists/ip-lists.component";
 
 const routes: Routes = [
   {
@@ -62,7 +59,7 @@ const routes: Routes = [
   {
     path: "ip-lists",
     loadChildren: () =>
-      import("./pages/ip-lists/device-id-lists.module").then(
+      import("./pages/ip-lists/ip-lists.module").then(
         m => m.IpListsModule
       )
   }
