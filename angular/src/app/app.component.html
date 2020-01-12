@@ -1,8 +1,13 @@
+<div *ngIf="!appLoaded">
+    <router-outlet></router-outlet>
+</div>
+
 <fusion-layout
+    *ngIf="appLoaded"
     [userName]="userName"
     [state]="headerState"
     [scrollTopOnRouteChange]="true"
-    [menuItems]="mainMenuItems"
+    [menuItems]="menuItems"
     [headerPrimaryMenuItems]="headerPrimaryMenuItems"
     [headerSecondaryMenuItems]="headerSecondaryMenuItems">
     <router-outlet></router-outlet>
