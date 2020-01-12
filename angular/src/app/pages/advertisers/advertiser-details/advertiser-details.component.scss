@@ -1,1 +1,10 @@
-@import '../../../../styles.scss'
+
+$generatorPanelWidth: 920px;
+$mainContentPadding: 0 30px 30px 30px;
+
+.is-generator-panel {
+    width: $generatorPanelWidth;
+    margin: 20px auto;
+    box-shadow: none;
+    padding: $mainContentPadding;
+}

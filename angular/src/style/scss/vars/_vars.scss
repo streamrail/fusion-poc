@@ -1,0 +1,100 @@
+@import './fonts';
+@import './colors';
+
+$em-base: 16px;
+
+// header & menu styles
+$mobileHeaderHeight: 50px;
+$headerPanelHeight: 60px;
+$footerHeight: 59px;
+$leftMenuWidth: 220px;
+$leftMenuCollapsedWidth: 70px;
+$contentMargin: 2px;
+$headerPaddingSm: 6px;
+$headerPaddingDesktop: 44px;
+$headerPaddingLarge: 50px;
+$box-padding: 20px;
+$componentsPagePadding: 30px;
+
+
+$padding: 15px;
+$margin: 15px;
+$marginDouble: $margin * 2;
+$marginOneThird: $margin * 4/3;
+$marginHalf: $margin / 2;
+$marginThird: $margin / 3;
+$marginTwoThird: $margin * 2/3;
+
+// add 3 dots (...) to text
+%truncate{
+    width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+
+%absoluteVerticalAlign {
+    margin-top: 0 !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+%absoluteHorizontalAlign {
+    margin-left: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+%absoluteVerticalAndHorizontalAlign{
+    margin-left: 0;
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%center{
+    margin: 0 auto;
+    float: none;
+}
+
+%drop-arrow{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    border-width: 4px 4px 0;
+    border-style: solid;
+    border-color: $dark-300 transparent transparent;
+}
+
+// scroll
+$scrollWidth: 14px;
+$scrollThumbWidth: 4px;
+$scrollRadius: 4px;
+$scrollBackgroundColor: $White;
+$scrollColor: $light-600;
+%customScroll{
+    &::-webkit-scrollbar-track {
+        border-radius: $scrollRadius;
+        background-color: $scrollBackgroundColor;
+    }
+
+    &::-webkit-scrollbar {
+        width: $scrollWidth;
+        height: $scrollWidth;
+        background-color: $scrollBackgroundColor;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border: calc((#{$scrollWidth} - #{$scrollThumbWidth}) / 2) solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        border-radius: $scrollRadius;
+        background-color: $scrollColor;
+    }
+}

@@ -28,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/style/scss/app.scss",
               "node_modules/@ironsrc/fusion-ui/fusion.theme.css"
             ],
             "scripts": []

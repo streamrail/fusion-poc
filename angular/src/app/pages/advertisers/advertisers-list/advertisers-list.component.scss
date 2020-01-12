@@ -1,1 +1,10 @@
-@import '../../../../styles.scss'
+@import '../../../../style/scss/vars/border';
+
+$mainContentPadding: 0 30px 30px 30px;
+
+.is-generator-panel {
+    margin: 0 auto 20px auto;
+    @extend %noBorder;
+    box-shadow: none;
+    padding: $mainContentPadding;
+}

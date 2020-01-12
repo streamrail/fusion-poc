@@ -1,0 +1,18 @@
+@import 'vars/colors';
+@import 'vars/fonts';
+
+// bulleting errors parts (tracking URL validation error)
+ul.ssa-bulleErr {
+	padding-left: 40px;
+	li {
+		list-style: disc;
+		list-style-type: disc;
+	}
+}
+
+
+.error-msg {
+	@extend %font7;
+	color: $negative-500;
+	margin-top: 3px;
+}

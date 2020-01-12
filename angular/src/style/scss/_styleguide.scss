@@ -1,0 +1,243 @@
+@import 'vars/colors';
+@import 'vars/fonts';
+@import 'vars/vars';
+
+$font-stack: Helvetica, sans-serif;
+
+body {
+    font: 13px/20px $body;
+    color: $dark-300;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    padding: 0;
+    margin: 0;
+    li {
+        list-style: none;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.content-align-left{
+    text-align: left;
+}
+
+.content-align-right{
+    text-align: right;
+}
+
+.small {
+    font-size: 90%;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.disabled {
+    //opacity: .5;
+    pointer-events: none;
+    cursor: default;
+    touch-callout: none;
+    user-select: none;
+}
+
+.drop {
+    border-width: 5px 5px 0;
+    border-color: $dark-300 transparent transparent;
+    border-style: solid;
+    display: inline-block;
+}
+
+.example {
+    padding: 10px 0;
+}
+
+.fw-icon {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+hr {
+    background-color: $light-500;
+    border-color: $light-500;
+    height: 1px;
+    color: $light-500;
+    border-width: 0;
+}
+
+.container {
+    &.primary {
+        width: auto;
+        max-width: 100%;
+        margin: 0;
+        padding-top: 30px;
+    }
+}
+
+.flex-row {
+    display: flex;
+}
+
+.is-relative{
+    position: relative;
+}
+
+.font1 {
+    @extend %font1;
+}
+
+.font2 {
+    @extend %font2;
+}
+
+.font3 {
+    @extend %font3;
+}
+
+.font4{
+    @extend %font4;
+}
+
+.font5 {
+    @extend %font5;
+}
+
+.font6 {
+    @extend %font6;
+}
+
+.font7 {
+    @extend %font7;
+}
+
+.font8 {
+    @extend %font8;
+}
+
+.font9 {
+    @extend %font9;
+}
+
+.font10 {
+    @extend %font10;
+}
+
+.font11 {
+    @extend %font11;
+}
+
+.font12 {
+    @extend %font12;
+}
+
+.font13 {
+    @extend %font13;
+}
+
+.font14 {
+    @extend %font14;
+}
+
+//links
+a, .overlay-wrapper a{
+    @extend %font6;
+    text-decoration: none;
+    color:$primary-500;
+    cursor: pointer;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active{
+        color:$primary-500;
+    }
+}
+a.is-button{
+    @extend %font14;
+    text-decoration: underline;
+    color: $light-900;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active{
+        color:$light-900;
+    }
+}
+
+.truncate{
+    @extend %truncate;
+}
+
+// borders sub-classes
+.no-border-bottom{
+    border-bottom: none !important;
+}
+
+
+// override bootstrap grid padding & margin
+.row{
+    padding: 0;
+    margin: 0;
+
+    [class^="col"] {
+        &:first-child{
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        &:last-child{
+            padding-right: 0;
+            margin-right: 0;
+        }
+    }
+}
+
+.childRight{
+    text-align: right;
+}
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+.error-msg {
+    @extend %font7;
+    color: $negative-500;
+    margin-top: 3px;
+}
+
+.is-reset-line-height{
+    line-height: inherit;
+}
+
+.is-no-display{
+    display: none;
+}
+
+.center{
+    @extend %center;
+}
+
+.is-currency{
+    &::first-letter {
+        padding-right: 0.3em;
+    }
+}
