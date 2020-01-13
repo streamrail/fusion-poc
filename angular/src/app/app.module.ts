@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { LayoutModule, IconModule } from '@ironsrc/fusion-ui';
+import {SharedModule} from './shared/shared.module';
+import {ServicesModule} from './services/services.module';
 
 import { AppRoutingModule } from './app.routing';
+
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -17,8 +19,8 @@ import { LoginComponent } from './pages/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutModule,
-    IconModule.forRoot({svgOptions: {assetsPath: 'https://supersonicads-a.akamaihd.net/demand'}})   
+    SharedModule ,
+    ServicesModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

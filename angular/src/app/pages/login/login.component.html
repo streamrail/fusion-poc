@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="ssaEntrancePage">
+    <div class="ssaCentered">
+        <div class="ssaEntranceHolder" [ngClass]="currentPage">
+            <div class="ssaEntranceHeader">
+                <a href="http://www.ironsrc.com" class="icon-ironSourceLogo"></a>
+                <div class="ssaEntranceHeader-title" [ngClass]="titleClass" ></div>
+            </div>
+            <div class="ssaEntranceContent {{currentPage}}" [ngClass]="{'disableSection':loading}">
+                <form name="registrationForm" novalidate>
+                    <span [formGroup]="loginForm">
+                        <div class="ssaEntranceFormRow">
+                            <label for="username">Username</label>
+                            <fusion-input
+                                    id="username"
+                                    placeholder="Please enter your username"
+                                    type="text"
+                                    name="username"
+                                    class="entranceInput"
+                                    formControlName="userName"
+                                    required
+                                    autofill
+                                    autofocus
+                                    [isDisabled]="loading"
+                                    (keyup.enter)="doLogin()"></fusion-input>
+                        </div>
+                    
+                        <div class="ssaEntranceFormRow">
+                            <label for="password">Password</label>
+                            <fusion-input
+                                    #passwordInput
+                                    id="password"
+                                    placeholder="Please enter your password"
+                                    type="password"
+                                    name="password"
+                                    class="entranceInput"
+                                    formControlName="password"
+                                    required
+                                    autofill
+                                    [isDisabled]="loading"
+                                    isErrorMessage="Password"
+                                    (keyup.enter)="doLogin()"></fusion-input>
+                            <span class="ssa-field-caption right"><a routerLink="/entrance/forgot">Forgot your password?</a></span>
+                        </div>
+                    </span>
+                    <div class="ssaEntranceFormRow">
+                        <button fusion-button class="ssaEntranceButton" ng-class="{loading:loading}" [disabled]="loading" (click)="doLogin()">
+                            <fusion-loader-inline [status]="loading" text=""></fusion-loader-inline>
+                            <span class="ssaEntranceButton-text">log in</span>
+                        </button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
