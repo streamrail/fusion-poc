@@ -1,14 +1,14 @@
-<div *ngIf="!(_userService.isLoggedIn$ | async)">
+<div *ngIf="!(isLoggedIn$ | async)">
     <router-outlet></router-outlet>
 </div>
 
 <fusion-layout
-    *ngIf="_userService.isLoggedIn$ | async"
+    *ngIf="isLoggedIn$ | async"
     [userName]="userName"
     [state]="headerState"
     [scrollTopOnRouteChange]="true"
     [menuItems]="menuItems"
-    [headerPrimaryMenuItems]="headerPrimaryMenuItems"
-    [headerSecondaryMenuItems]="headerSecondaryMenuItems">
+    [headerPrimaryMenuItems]="headerUserMenuItems"
+    [headerSecondaryMenuItems]="headerHelpMenuItems">
     <router-outlet></router-outlet>
 </fusion-layout>

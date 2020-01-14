@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from '@ironsrc/fusion-ui'
 
 import menuItems from './app.menu.items.data';
-import { UserService } from './services/user/user.service';
+import { AuthService } from './services/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +12,41 @@ import { UserService } from './services/user/user.service';
 })
 export class AppComponent implements OnInit {
   appLoaded: boolean = true;
-  isLoggedIn: boolean = false;
   menuItems: MenuItem[];
   headerUserMenuItems: MenuItem[];
   headerHelpMenuItems: MenuItem[];
   headerState: any;
+  isLoggedIn$: Observable<boolean>
 
   constructor(
-    private _userService: UserService
+    private _authService: AuthService
   ) {}
 
   ngOnInit() {
-    this._userService.isLoggedIn$.subscribe(isLoggedIn => {
-      console.log(`isLoggedIn = ${isLoggedIn}`);
+    this.isLoggedIn$ = this._authService.isLoggedIn.asObservable();
+    this.isLoggedIn$.subscribe(isLoggedIn => {
+      console.log('isLoggedIn', isLoggedIn);
     });
     this.headerState = {
       title: 'test'
     };
     this.menuItems = this.filterPermittedMenuItems(menuItems);
-    this.headerUserMenuItems = [];
+    this.headerUserMenuItems = [
+      {
+        name: 'My Account',
+        cssClass: 'is-user-menu-item'
+    },
+    {
+        name: 'User Management',
+        cssClass: 'is-user-menu-item',
+        permissions: ['manageOwnUsers']
+    },
+    {
+        name: 'Logout',
+        cssClass: 'is-user-menu-item',
+        route: '/logout'
+    }
+    ];
     this.headerHelpMenuItems = [];
   }
 

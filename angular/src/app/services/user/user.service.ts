@@ -5,17 +5,14 @@ import { of, BehaviorSubject, Observable } from 'rxjs';
   providedIn: "root"
 })
 export class UserService {
-  isLoggedIn$: Observable<boolean>
-  private _isLoggedIn$: BehaviorSubject<boolean>
   private _userData: any;
 
   constructor() {
-    this._isLoggedIn$ = new BehaviorSubject(false);
-    this.isLoggedIn$ = this._isLoggedIn$.asObservable();
-    this._userData = {};
+    this._userData = null;
   }
 
   fetchUserData(refresh?: boolean) {
+    console.log('fetchUserData');
     // if (refresh || Object.keys(this._userData).length === 0) {
     //   const options: ApiRequestOptions = {
     //     responseType: ApiResponseType.Json,
@@ -37,20 +34,16 @@ export class UserService {
     // } else {
     //   return this._fetchUserDataSubject;
     // }
-    this._userData = {username: 'test'};
-    this._isLoggedIn$.next(true);
-    return of(this.userData);
+    if (this._userData === null) {
+      this._userData = {id: '123', username: 'test', name: 'Test'}; // simulate get user from server
+    }
+    return of(this._userData);
   }
   public get userData() {
-    return this._userData;
-  }
-
-  public get isLoggedIn():boolean {
-    return this._isLoggedIn$.getValue();
+    return this._userData || {};
   }
 
   clearUserData() {
-    this._isLoggedIn$.next(false);
     this._userData = {};
   }
 }

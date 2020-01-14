@@ -37,6 +37,7 @@ export class AuthenticationGuard implements CanActivate {
       return this.disablePage(state.url);
     }
   }
+  
   disablePage(url) {
     const options = !this._isBaseRoute(url)
       ? { queryParams: { returnToUrl: url } }

@@ -1,57 +1,55 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '@ironsrc/fusion-ui';
+import { ApiService, ApiResponseType } from '@ironsrc/fusion-ui';
 import { UserService } from '../user/user.service';
 
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
     private _authToken: string;
     private _authTokenKey: string;
+    public isLoggedIn: BehaviorSubject<boolean>
 
-    constructor(private _apiService: ApiService, private _userService: UserService) {
+    constructor(
+        private _apiService: ApiService,
+        private _userService: UserService
+    ) {
         this._authTokenKey = 'connectAuthService';
-    }
-
-    public get isLoggedAsUser(): boolean {
-        return !!this._authToken;
+        this._authToken = localStorage.getItem(this._authTokenKey);
+        this.isLoggedIn = new BehaviorSubject(this._authToken !== null);
     }
 
     public get authToken() {
-        if (!this._authToken) {
-            this._authToken = localStorage.getItem(this._authTokenKey);
-        }
         return this._authToken;
     }
 
-    public set authToken(token) {
-        this._authToken = token;
-        localStorage.setItem(this._authTokenKey, token);
-    }
-
     public login(username, password) {
-        this.logout();
-        // const apiUrl = `/api/v2/login`;
-        // return this._apiService
-        //     .post(
-        //         apiUrl,
-        //         {
-        //             username: username,
-        //             password: password
-        //         },
-        //         {responseType: ApiResponseType.Json, headers: {Authorization: ''}}
-        //     )
-        //     .pipe(
-        //         tap(tokenData => {
-        //             this.authToken = tokenData;
-        //         })
-        //     );
-        this.authToken = '1234';
-        return of({token: 12});
+        const apiUrl = `https://partners.streamrail.com/api/v2/login`;
+        const formData: FormData = new FormData();
+        formData.append('username', 'yoni@streamrail.com');
+        formData.append('password', '1234');
+        return this._apiService
+            .post(
+                apiUrl,
+                formData,
+                {responseType: ApiResponseType.Json, headers: {Authorization: ''}}
+            )
+            .pipe(
+                tap(tokenData => {
+                    localStorage.setItem(this._authTokenKey, JSON.stringify(tokenData));
+                    this._authToken = tokenData;
+                    this.isLoggedIn.next(true);
+                })
+            );
     }
 
     public logout() {
         localStorage.removeItem(this._authTokenKey);
-        this.authToken = '';
+        this._authToken = '';
+        this._userService.clearUserData();
+        setTimeout(() => {
+            this.isLoggedIn.next(false);
+        }, 100)
     }
 }
