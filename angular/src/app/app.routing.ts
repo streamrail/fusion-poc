@@ -22,27 +22,33 @@ const routes: Routes = [
   },
   {
     path: "advertisers",
-    loadChildren: () =>import("./pages/advertisers/advertisers.module").then(m => m.AdvertisersModule)
+    loadChildren: () =>import("./pages/advertisers/advertisers.module").then(m => m.AdvertisersModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "campaigns",
-    loadChildren: () =>import("./pages/campaigns/campaigns.module").then(m => m.CampaignsModule)
+    loadChildren: () =>import("./pages/campaigns/campaigns.module").then(m => m.CampaignsModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "deals",
-    loadChildren: () =>import("./pages/deals/deals.module").then(m => m.DealsModule)
+    loadChildren: () =>import("./pages/deals/deals.module").then(m => m.DealsModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "app-lists",
-    loadChildren: () =>import("./pages/app-lists/app-lists.module").then(m => m.AppListsModule)
+    loadChildren: () =>import("./pages/app-lists/app-lists.module").then(m => m.AppListsModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "device-id-lists",
-    loadChildren: () =>import("./pages/device-id-lists/device-id-lists.module").then(m => m.DeviceIdListsModule)
+    loadChildren: () =>import("./pages/device-id-lists/device-id-lists.module").then(m => m.DeviceIdListsModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "ip-lists",
-    loadChildren: () =>import("./pages/ip-lists/ip-lists.module").then(m => m.IpListsModule)
+    loadChildren: () =>import("./pages/ip-lists/ip-lists.module").then(m => m.IpListsModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "login",
