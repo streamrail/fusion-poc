@@ -1,10 +1,9 @@
-{{!isLoggedIn$ | async}}
-<div *ngIf="!appLoaded">
+<div *ngIf="!(_userService.isLoggedIn$ | async)">
     <router-outlet></router-outlet>
 </div>
 
 <fusion-layout
-    *ngIf="appLoaded"
+    *ngIf="_userService.isLoggedIn$ | async"
     [userName]="userName"
     [state]="headerState"
     [scrollTopOnRouteChange]="true"

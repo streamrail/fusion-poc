@@ -1,14 +1,19 @@
 import { Injectable } from "@angular/core";
-import { of, BehaviorSubject } from 'rxjs';
+import { of, BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  public isLoggedIn = new BehaviorSubject<boolean>(false);
-  private _userData: any = {};
+  isLoggedIn$: Observable<boolean>
+  private _isLoggedIn$: BehaviorSubject<boolean>
+  private _userData: any;
 
-  constructor() {}
+  constructor() {
+    this._isLoggedIn$ = new BehaviorSubject(false);
+    this.isLoggedIn$ = this._isLoggedIn$.asObservable();
+    this._userData = {};
+  }
 
   fetchUserData(refresh?: boolean) {
     // if (refresh || Object.keys(this._userData).length === 0) {
@@ -33,15 +38,19 @@ export class UserService {
     //   return this._fetchUserDataSubject;
     // }
     this._userData = {username: 'test'};
-    this.isLoggedIn.next(true);
+    this._isLoggedIn$.next(true);
     return of(this.userData);
   }
   public get userData() {
     return this._userData;
   }
 
+  public get isLoggedIn():boolean {
+    return this._isLoggedIn$.getValue();
+  }
+
   clearUserData() {
-    this.isLoggedIn.next(false);
+    this._isLoggedIn$.next(false);
     this._userData = {};
   }
 }

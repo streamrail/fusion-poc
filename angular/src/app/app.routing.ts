@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: "custom-reports",
-    loadChildren: () =>import("./pages/custom-reports/custom-reports.module").then(m => m.CustomReportsModule)
+    loadChildren: () =>import("./pages/custom-reports/custom-reports.module").then(m => m.CustomReportsModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: "advertisers",
@@ -53,8 +54,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(
-      routes,
-      { enableTracing: true } // <-- debugging purposes only
+      routes
     )
   ],
   exports: [RouterModule]
