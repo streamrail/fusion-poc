@@ -6,6 +6,7 @@ import { of, BehaviorSubject, Observable } from 'rxjs';
 })
 export class UserService {
   private _userData: any;
+  private _fetchUserDataSubject: Observable<any>;
 
   constructor() {
     this._userData = null;

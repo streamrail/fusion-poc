@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService, ApiResponseType } from '@ironsrc/fusion-ui';
 import { UserService } from '../user/user.service';
 
-import { of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
