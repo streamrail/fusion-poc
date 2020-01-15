@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 
-import { finalize, mergeMap } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GlobalService } from 'src/app/services/global/global.service';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
     private _userService: UserService,
-    public _globalService: GlobalService,
+    private _globalService: GlobalService,
     private _route: ActivatedRoute
   ) {}
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this._authService
             .login(this.loginForm.get('userName').value, this.loginForm.get('password').value)
             .pipe(
-                mergeMap(() => this._userService.fetchUserData(true)),
+                tap(tokenData => this._userService.fetchUserData(tokenData)),
                 finalize(() => (this.loading = false))
             )
             .subscribe(

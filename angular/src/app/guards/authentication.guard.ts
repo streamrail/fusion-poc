@@ -22,14 +22,11 @@ export class AuthenticationGuard implements CanActivate {
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this._authService.authToken) {
-      return this._userService.fetchUserData().pipe(
+    const authToken = this._authService.authToken;
+    if (authToken) {
+      return this._userService.fetchUserData(authToken).pipe(
         map(() => {
-          if (this._isBaseRoute(state.url)) {
-            this._globalService.redirectToBase();
-          } else {
-            return true;
-          }
+          return true;
         }),
         catchError(() => of(this.disablePage(state.url)))
       );

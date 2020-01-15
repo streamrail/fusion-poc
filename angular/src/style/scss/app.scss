@@ -4,3 +4,7 @@
 @import './styleguide';
 @import './margin-padding';
 @import './errors';
+
+.app-route-content-holder {
+    overflow-y: auto;
+}

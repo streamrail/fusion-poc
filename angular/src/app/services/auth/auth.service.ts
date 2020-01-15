@@ -16,7 +16,7 @@ export class AuthService {
         private _userService: UserService
     ) {
         this._authTokenKey = 'connectAuthService';
-        this._authToken = localStorage.getItem(this._authTokenKey);
+        this._authToken = JSON.parse(localStorage.getItem(this._authTokenKey));
         this.isLoggedIn = new BehaviorSubject(this._authToken !== null);
     }
 
@@ -40,6 +40,7 @@ export class AuthService {
                     localStorage.setItem(this._authTokenKey, JSON.stringify(tokenData));
                     this._authToken = tokenData;
                     this.isLoggedIn.next(true);
+                    return tokenData;
                 })
             );
     }
