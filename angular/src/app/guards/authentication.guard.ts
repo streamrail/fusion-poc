@@ -24,7 +24,7 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const authToken = this._authService.authToken;
     if (authToken) {
-      return this._userService.fetchUserData(authToken).pipe(
+      return this._userService.fetchUserData().pipe(
         map(() => {
           return true;
         }),
