@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import {
   CanActivate,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  Router
+  RouterStateSnapshot
 } from "@angular/router";
 import { AuthService } from "../services/auth/auth.service";
 import { UserService } from "../services/user/user.service";
